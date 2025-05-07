@@ -1,11 +1,11 @@
-name = "Pickup Filter"
-description = "Filter items you pickup by pressing a key!"
+name = "Attack Filter"
+description = "Filter entities you attack by pressing a key!"
 
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
 
 author = "Boas"
-version = "1.0.1"
+version = "1.0.0"
 forumthread = ""
 
 dont_starve_compatible = false
@@ -79,34 +79,12 @@ local AssignKeyMessage = "Assign a key"
 
 configuration_options =
 {
-    AddSectionTitle("Pickup Filter Keybinds"),
+    AddSectionTitle("Attack Filter Keybinds"),
     AddConfig(
-        "Filter Item",
-        "FILTER_ITEM_KEY",
+        "Filter Entity",
+        "FILTER_ENTITY_KEY",
         KeyboardOptions,
-        "KEY_F1",
+        "KEY_F3",
         AssignKeyMessage
     ),
-    AddConfig(
-        "Toggle Pickup Filter",
-        "TOGGLE_PICKUP_FILTER_KEY",
-        KeyboardOptions,
-        "KEY_F2",
-        AssignKeyMessage
-    ),
-    AddSectionTitle("Advanced Settings"),
-    AddConfig(
-        "Allow Mouse",
-        "ALLOW_MOUSE_PICKUP_THROUGH_FILTER_BOOL",
-        ToggleOptions,
-        false,
-        "Allows mouse clicks to bypass the pickup filter for harvestable objects (e.g., Flowers, Grass), but not items lying on the ground."
-    ),
-    AddConfig(
-        "Remove Interactions",
-        "REMOVE_INTERACTIONS_FROM_FILTERED_BOOL",
-        ToggleOptions,
-        false,
-        "Prevents all interactions, including examine, with items that are currently filtered."
-    )
 }    
