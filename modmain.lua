@@ -77,7 +77,7 @@ local function loadFilter(cb)
 end
 
 local function Say(msg)
-    if _G.ThePlayer and _G.ThePlayer.components.talker then
+    if _G.ThePlayer and _G.ThePlayer.components and _G.ThePlayer.components.talker then
         _G.ThePlayer.components.talker:Say(msg)
     end
 end
