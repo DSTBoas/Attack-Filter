@@ -17,10 +17,6 @@ client_only_mod = true
 
 api_version = 10
 
-local function AddConfigOption(desc, data)
-    return {description = desc, data = data}
-end
-
 local function AddConfig(label, name, options, default, hover)
     return {
         label = label,
@@ -35,15 +31,19 @@ local function AddSectionTitle(title)
     return AddConfig(title, "", {{description = "", data = 0}}, 0)
 end
 
+local function AddConfigOption(desc, data, hover)
+    return {description = desc, data = data, hover = hover}
+end
+
 local function GetKeyboardOptions()
     local keys = {}
 
     local function AddConfigKey(t, key)
-        t[#t + 1] = AddConfigOption(key, "KEY_" .. key)
+        t[#t + 1] = AddConfigOption(key, "KEY_" .. key, "")
     end
 
     local function AddDisabledConfigOption(t)
-        t[#t + 1] = AddConfigOption("Disabled", false)
+        t[#t + 1] = AddConfigOption("Disabled", false, "")
     end
 
     AddDisabledConfigOption(keys)
@@ -66,25 +66,35 @@ local function GetKeyboardOptions()
     return keys
 end
 
-local function GetToggleOptions()
-    return {
-        AddConfigOption("Disabled", false),
-        AddConfigOption("Enabled", true)
-    }
-end
-
 local KeyboardOptions = GetKeyboardOptions()
-local ToggleOptions = GetToggleOptions()
-local AssignKeyMessage = "Assign a key"
 
 configuration_options =
 {
-    AddSectionTitle("Attack Filter Keybinds"),
+    AddSectionTitle("Attack Filter Keys"),
     AddConfig(
         "Filter Entity",
         "FILTER_ENTITY_KEY",
         KeyboardOptions,
         "KEY_F3",
-        AssignKeyMessage
+        "Assign a key or disable"
     ),
-}    
+    AddConfig(
+        "Toggle Attack Filter",
+        "TOGGLE_FILTER_KEY",
+        KeyboardOptions,
+        false,
+        "Assign a key or disable"
+    ),
+    AddSectionTitle("Save Settings"),
+    AddConfig(
+        "Remember Filtered Targets",
+        "PERSISTENCE_MODE",
+        {
+            AddConfigOption("Don't save", "disabled", "Never remember your filtered targets."),
+            AddConfigOption("Save for all games", "game", "Remember filtered targets in every world."),
+            AddConfigOption("Save per world", "world", "Each world remembers its own filtered targets."),
+        },
+        "game",
+        "Choose how your filter is remembered"
+    ),
+}
