@@ -5,7 +5,7 @@ icon_atlas = "modicon.xml"
 icon = "modicon.tex"
 
 author = "Boas"
-version = "1.0.1"
+version = "1.0.2"
 forumthread = ""
 
 dont_starve_compatible = false
@@ -96,5 +96,5 @@ configuration_options =
         },
         "game",
         "Choose how your filter is remembered"
-    ),
+    )
 }

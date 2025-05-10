@@ -95,8 +95,8 @@ local function Toggle(ent)
     saveFilter(AttackFilters)
     RetintPrefab(prefab, filtered)
 
-    local msg = filtered and ("Now ignoring %s"):format(ent.name or prefab) or
-                ("Will attack %s again"):format(ent.name or prefab)
+    local msg = filtered and ("Now ignoring “%s”"):format(ent.name or prefab) or
+                ("Will attack “%s” again"):format(ent.name or prefab)
     Say(msg)
 end
 
@@ -126,7 +126,6 @@ local function RefreshAllTints()
     end
 end
 
-
 if TheInput then
     TheInput:AddKeyDownHandler(
         FILTER_KEY,
@@ -138,7 +137,7 @@ if TheInput then
             local ent = TheInput:GetWorldEntityUnderMouse()
 
             if ent == nil then
-                Say("There’s nothing here to filter.")
+                Say("No entity under cursor to filter.")
                 return
             end
 
@@ -159,7 +158,7 @@ if TheInput then
             FilterEnabled = not FilterEnabled
             RefreshAllTints()
 
-            Say(FilterEnabled and "Attack filter ON" or "Attack filter OFF")
+            Say(FilterEnabled and "Attack filter enabled." or "Attack filter temporarily disabled.")
         end
     )
 end
