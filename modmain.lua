@@ -130,7 +130,7 @@ if TheInput then
     TheInput:AddKeyDownHandler(
         FILTER_KEY,
         function()
-            if _G.IsPaused() then
+            if _G.IsPaused() or not _G.ThePlayer then
                 return
             end
 
@@ -153,7 +153,9 @@ if TheInput then
     TheInput:AddKeyDownHandler(
         TOGGLE_KEY,
         function()
-            if _G.IsPaused() then return end
+            if _G.IsPaused() or not _G.ThePlayer then
+                return
+            end
 
             FilterEnabled = not FilterEnabled
             RefreshAllTints()
